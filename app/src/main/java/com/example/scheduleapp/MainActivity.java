@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
 
+import com.example.scheduleapp.database.Task;
+import com.example.scheduleapp.model.TaskViewModel;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
@@ -17,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.scheduleapp.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
+    private TaskViewModel taskViewModel;
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
