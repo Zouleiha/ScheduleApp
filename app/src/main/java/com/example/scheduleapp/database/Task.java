@@ -18,23 +18,26 @@ public class Task {
 
     public Priority priority;
 
-//    public Time Duration;
-//
-//    public Time startTime;
-//
-//    public Time stopTime;
+    public Date Duration;
+
+    public Date startTime;
+
+    public Date stopTime;
 
     public Date dueDate;
 
-    public Task(long taskId, String taskName, String taskDescription, Priority priority,/* Time duration, Time startTime, Time stopTime,*/ Date dueDate) {
+    public Task(long taskId, String taskName, String taskDescription, Priority priority, Date duration, Date startTime, Date stopTime, Date dueDate) {
         this.taskId = taskId;
         this.taskName = taskName;
         this.taskDescription = taskDescription;
         this.priority = priority;
-//        Duration = duration;
-//        this.startTime = startTime;
-//        this.stopTime = stopTime;
+        Duration = duration;
+        this.startTime = startTime;
+        this.stopTime = stopTime;
         this.dueDate = dueDate;
+    }
+
+    public Task() {
     }
 
     public long getTaskId() {
@@ -69,29 +72,29 @@ public class Task {
         this.priority = priority;
     }
 
-//    public Time getDuration() {
-//        return Duration;
-//    }
-//
-//    public void setDuration(Time duration) {
-//        Duration = duration;
-//    }
-//
-//    public Time getStartTime() {
-//        return startTime;
-//    }
-//
-//    public void setStartTime(Time startTime) {
-//        this.startTime = startTime;
-//    }
-//
-//    public Time getStopTime() {
-//        return stopTime;
-//    }
-//
-//    public void setStopTime(Time stopTime) {
-//        this.stopTime = stopTime;
-//    }
+    public Date getDuration() {
+        return Duration;
+    }
+
+    public void setDuration(Date duration) {
+        Duration = duration;
+    }
+
+    public Date getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    public Date getStopTime() {
+        return stopTime;
+    }
+
+    public void setStopTime(Date stopTime) {
+        this.stopTime = stopTime;
+    }
 
     public Date getDueDate() {
         return dueDate;
@@ -108,9 +111,9 @@ public class Task {
                 ", taskName='" + taskName + '\'' +
                 ", taskDescription='" + taskDescription + '\'' +
                 ", priority=" + priority +
-//                ", Duration=" + Duration +
-//                ", startTime=" + startTime +
-//                ", stopTime=" + stopTime +
+                ", Duration=" + Duration +
+                ", startTime=" + startTime +
+                ", stopTime=" + stopTime +
                 ", dueDate=" + dueDate +
                 '}';
     }

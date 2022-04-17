@@ -24,8 +24,6 @@ public class ListviewFragment extends Fragment {
         binding = FragmentListviewBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textListview;
-        listviewViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 

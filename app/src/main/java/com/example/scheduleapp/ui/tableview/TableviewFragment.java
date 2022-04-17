@@ -24,8 +24,6 @@ public class TableviewFragment extends Fragment {
         binding = FragmentTableviewBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textTableview;
-        tableviewViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 
