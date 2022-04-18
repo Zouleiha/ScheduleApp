@@ -26,8 +26,9 @@ public class Task {
 
     public Date dueDate;
 
-    public Task(long taskId, String taskName, String taskDescription, Priority priority, Date duration, Date startTime, Date stopTime, Date dueDate) {
-        this.taskId = taskId;
+    public boolean  isDone;
+
+    public Task(String taskName, String taskDescription, Priority priority, Date duration, Date startTime, Date stopTime, Date dueDate, boolean  isDone) {
         this.taskName = taskName;
         this.taskDescription = taskDescription;
         this.priority = priority;
@@ -35,6 +36,7 @@ public class Task {
         this.startTime = startTime;
         this.stopTime = stopTime;
         this.dueDate = dueDate;
+        this.isDone = isDone;
     }
 
     public Task() {
@@ -104,6 +106,14 @@ public class Task {
         this.dueDate = dueDate;
     }
 
+    public boolean isDone() {
+        return isDone;
+    }
+
+    public void setDone(boolean done) {
+        isDone = done;
+    }
+
     @Override
     public String toString() {
         return "Task{" +
@@ -115,7 +125,7 @@ public class Task {
                 ", startTime=" + startTime +
                 ", stopTime=" + stopTime +
                 ", dueDate=" + dueDate +
+                ", isDone=" + isDone +
                 '}';
     }
-
 }

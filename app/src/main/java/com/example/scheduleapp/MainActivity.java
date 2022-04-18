@@ -1,28 +1,43 @@
 package com.example.scheduleapp;
 
+import static android.content.ContentValues.TAG;
+
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 
+import com.example.scheduleapp.database.Priority;
 import com.example.scheduleapp.database.Task;
 import com.example.scheduleapp.model.TaskViewModel;
+import com.example.scheduleapp.ui.listview.RecyclerViewAdapter;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.scheduleapp.databinding.ActivityMainBinding;
+
+import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
     private TaskViewModel taskViewModel;
 
+    private static final String TAG = "ITEM";
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
+    private RecyclerView recyclerView;
+    private RecyclerViewAdapter recyclerViewAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +65,28 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+//        setContentView(R.layout.fragment_listview);
+
+        recyclerView = findViewById(R.id.recycler_view);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        taskViewModel = new ViewModelProvider.AndroidViewModelFactory(
+                MainActivity.this.getApplication()
+        ).create(TaskViewModel.class);
+
+        taskViewModel.getAllTasks().observe(this, tasks -> {
+            recyclerViewAdapter = new RecyclerViewAdapter(tasks);
+            recyclerView.setAdapter(recyclerViewAdapter);
+        });
+
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(view -> {
+            Task task = new Task("Task","task description", Priority.MEDIUM, Calendar.getInstance().getTime(),
+                    Calendar.getInstance().getTime(), Calendar.getInstance().getTime(),
+                    Calendar.getInstance().getTime(),false);
+        });
     }
 
     @Override
