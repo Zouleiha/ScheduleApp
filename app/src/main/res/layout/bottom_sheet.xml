@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bottomSheet"
     style="@style/Animation.Design.BottomSheetDialog"
     android:layout_width="match_parent"
@@ -19,8 +20,9 @@
         android:inputType="textPersonName"
         android:padding="@dimen/dimen_16"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.281"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <ImageButton
         android:id="@+id/priority_todo_button"
@@ -85,7 +87,7 @@
 
     <com.google.android.material.chip.Chip
         android:id="@+id/today_chip"
-        android:layout_width="1dp"
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginTop="2dp"
         android:text="@string/today"
@@ -160,7 +162,7 @@
         android:id="@+id/calendar_group"
         android:layout_width="280dp"
         android:layout_height="0dp"
-        android:visibility="gone"
+        android:visibility="visible"
         app:constraint_referenced_ids="calendar_view,next_week_chip,tomorrow_chip,today_chip,textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

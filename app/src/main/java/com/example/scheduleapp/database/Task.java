@@ -10,23 +10,23 @@ import java.util.Date;
 @Entity(tableName = "task_table")
 public class Task {
     @PrimaryKey(autoGenerate = true)
-    public long taskId;
+    protected long taskId;
 
-    public String taskName;
+    protected String taskName;
 
-    public String taskDescription;
+    protected String taskDescription;
 
-    public Priority priority;
+    protected Priority priority;
 
-    public Date Duration;
+    protected Date Duration;
 
-    public Date startTime;
+    protected Date startTime;
 
-    public Date stopTime;
+    protected Date stopTime;
 
-    public Date dueDate;
+    protected Date dueDate;
 
-    public boolean  isDone;
+    protected boolean  isDone;
 
     public Task(String taskName, String taskDescription, Priority priority, Date duration, Date startTime, Date stopTime, Date dueDate, boolean  isDone) {
         this.taskName = taskName;

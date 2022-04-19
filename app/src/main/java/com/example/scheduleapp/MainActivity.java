@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.scheduleapp.database.Priority;
 import com.example.scheduleapp.database.Task;
 import com.example.scheduleapp.databinding.ActivityMainBinding;
-import com.example.scheduleapp.model.TaskViewModel;
+import com.example.scheduleapp.ui.listview.ListviewViewModel;
 import com.example.scheduleapp.ui.listview.RecyclerViewAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
@@ -26,9 +26,8 @@ import com.google.android.material.snackbar.Snackbar;
 import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
-    private TaskViewModel taskViewModel;
+    private ListviewViewModel listviewViewModel;
 
-    private static final String TAG = "ITEM";
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
     private RecyclerView recyclerView;
@@ -38,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setContentView(R.layout.fragment_listview);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -62,17 +61,16 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-//        setContentView(R.layout.fragment_listview);
 
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        taskViewModel = new ViewModelProvider.AndroidViewModelFactory(
+        listviewViewModel = new ViewModelProvider.AndroidViewModelFactory(
                 MainActivity.this.getApplication()
-        ).create(TaskViewModel.class);
+        ).create(ListviewViewModel.class);
 
-        taskViewModel.getAllTasks().observe(this, tasks -> {
+        listviewViewModel.getAllTasks().observe(this, tasks -> {
             recyclerViewAdapter = new RecyclerViewAdapter(tasks);
             recyclerView.setAdapter(recyclerViewAdapter);
         });
@@ -82,6 +80,8 @@ public class MainActivity extends AppCompatActivity {
             Task task = new Task("Task","task description", Priority.MEDIUM, Calendar.getInstance().getTime(),
                     Calendar.getInstance().getTime(), Calendar.getInstance().getTime(),
                     Calendar.getInstance().getTime(),false);
+
+            ListviewViewModel.insert(task);
         });
     }
 
